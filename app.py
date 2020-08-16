@@ -29,9 +29,10 @@ def get_notes():
 @app.route('/create', methods=['POST'])
 def take_note():
   if request.method == 'POST':
-    cur.execute("insert into notes(note, timestamp) values(request.json['note'], current_timestamp)");
+    print(f"insert into notes(note, timestamp) values('{request.json['note']}', current_timestamp);");
+    cur.execute(f"insert into notes(note, timestamp) values('{request.json['note']}', current_timestamp);");
     print('inserted');
-    # conn.close()
+    conn.commit()
     return({})
 
 if __name__ == "__main__": 
